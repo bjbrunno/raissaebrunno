@@ -2,68 +2,58 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Feliz Dia dos Namorados, Raissa! ❤️</title>
+  <title>Raissa e Brunno 💖</title>
   <style>
     body {
-      margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: #fff0f5;
-      color: #333;
+      background: #fff7f3;
       text-align: center;
-      padding: 20px;
+      padding: 50px;
+      color: #333;
     }
+
     h1 {
-      margin-top: 20px;
       font-size: 2.5em;
-      color: #c71585;
+      margin-bottom: 10px;
     }
-    #counter {
-      font-size: 2em;
-      margin: 20px 0;
+
+    .contador {
+      font-size: 1.8em;
+      font-weight: bold;
+      color: #ff4d6d;
     }
-    .message {
-      font-size: 1.2em;
-      margin: 20px auto;
-      max-width: 600px;
-    }
-    .photo {
-      width: 90%;
-      max-width: 400px;
-      border-radius: 16px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      margin-top: 20px;
-    }
-    footer {
-      margin-top: 40px;
-      font-size: 0.9em;
-      color: #888;
+
+    img {
+      max-width: 300px;
+      border-radius: 20px;
+      margin-top: 30px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
   </style>
 </head>
 <body>
-  <h1>Feliz Dia dos Namorados, Raissa! 💖</h1>
-  <div id="counter">Carregando...</div>
-  <div class="message">
-    Desde que começamos a namorar, cada dia ao seu lado tem sido especial. Hoje celebramos o amor que cresce a cada instante. Te amo! 💕
-  </div>
-  <img class="photo" src="raissa-e-brunno.jpg" alt="Foto do casal">
-
-  <footer>Feito com amor por Brunno 💌</footer>
-
+  <h1>Raissa 💕 Brunno</h1>
+  <p class="contador" id="contador"></p>
+  <img src="foto.jpg" alt="Foto do casal">
+  
   <script>
-    const startDate = new Date('2023-09-02');
-    const counter = document.getElementById('counter');
+    const inicio = new Date("2023-09-02T00:00:00");
 
-    function updateDaysTogether() {
-      const today = new Date();
-      const diffTime = today - startDate;
-      const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-      counter.textContent = `Estamos juntos há ${diffDays} dias ❤️`;
+    function atualizarContador() {
+      const agora = new Date();
+      const diff = agora - inicio;
+
+      const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutos = Math.floor((diff / (1000 * 60)) % 60);
+      const segundos = Math.floor((diff / 1000) % 60);
+
+      const texto = `Estamos juntos há ${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos 😍`;
+      document.getElementById("contador").innerText = texto;
     }
 
-    updateDaysTogether();
-    setInterval(updateDaysTogether, 86400000); // Atualiza a cada 24h
+    atualizarContador();
+    setInterval(atualizarContador, 1000);
   </script>
 </body>
 </html>
