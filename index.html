@@ -3,91 +3,67 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Raissa & Brunno</title>
+  <title>Feliz Dia dos Namorados, Raissa! ❤️</title>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #ffe6eb, #fff3f3);
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff0f5;
       color: #333;
       text-align: center;
-      padding: 30px;
+      padding: 20px;
     }
     h1 {
-      font-size: 2.5em;
-      margin-bottom: 10px;
-      color: #c0392b;
-    }
-    h1 span {
-      animation: pulse 1s infinite;
-      display: inline-block;
-    }
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.2); }
-      100% { transform: scale(1); }
-    }
-    .counter {
-      font-size: 1.5em;
-      margin: 20px 0;
-      color: #e91e63;
-      font-weight: bold;
-    }
-    img {
       margin-top: 20px;
-      max-width: 300px;
-      border-radius: 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      font-size: 2.5em;
+      color: #c71585;
     }
-    audio {
-      margin-top: 30px;
+    #counter {
+      font-size: 2em;
+      margin: 20px 0;
+    }
+    .message {
+      font-size: 1.2em;
+      margin: 20px auto;
+      max-width: 600px;
+    }
+    .photo {
+      width: 90%;
+      max-width: 400px;
+      border-radius: 16px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      margin-top: 20px;
+    }
+    footer {
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: #888;
     }
   </style>
 </head>
 <body>
-  <h1>Raissa <span>❤️</span> Brunno</h1>
+  <h1>Feliz Dia dos Namorados, Raissa! 💖</h1>
+  <div id="counter">Carregando...</div>
+  <div class="message">
+    Desde que começamos a namorar, cada dia ao seu lado tem sido especial. Hoje celebramos o amor que cresce a cada instante. Te amo! 💕
+  </div>
+  <img class="photo" src="raissa-e-brunno.jpg" alt="Foto do casal">
 
-  <div class="counter" id="contadorAmor"></div>
-  <div class="counter" id="contadorCasamento"></div>
-
-  <img src="foto.jpg" alt="Foto do casal">
-
-  <audio autoplay loop controls>
-    <source src="https://bjbrunno.github.io/raissaebrunno/aindabem.mp3" type="audio/mpeg">
-    Seu navegador não suporta áudio.
-  </audio>
+  <footer>Feito com amor por Brunno 💌</footer>
 
   <script>
-    const comecoRelacao = new Date('2022-09-02T20:00:00');
-    const dataCasamento = new Date('2025-10-18T17:00:00');
+    const startDate = new Date('2023-09-02');
+    const counter = document.getElementById('counter');
 
-    function atualizaContadores() {
-      const agora = new Date();
-
-      // Diferença desde o início do relacionamento
-      let diffAmor = agora - comecoRelacao;
-      let dias = Math.floor(diffAmor / (1000 * 60 * 60 * 24));
-      let horas = Math.floor((diffAmor / (1000 * 60 * 60)) % 24);
-      let minutos = Math.floor((diffAmor / (1000 * 60)) % 60);
-      let segundos = Math.floor((diffAmor / 1000) % 60);
-
-      document.getElementById("contadorAmor").innerText = `Estamos juntos há ${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos 🥰`;
-
-      // Diferença até o casamento
-      let diffCasamento = dataCasamento - agora;
-      let diasC = Math.floor(diffCasamento / (1000 * 60 * 60 * 24));
-      let horasC = Math.floor((diffCasamento / (1000 * 60 * 60)) % 24);
-      let minutosC = Math.floor((diffCasamento / (1000 * 60)) % 60);
-      let segundosC = Math.floor((diffCasamento / 1000) % 60);
-
-      if (diffCasamento > 0) {
-        document.getElementById("contadorCasamento").innerText = `Faltam ${diasC} dias, ${horasC} horas, ${minutosC} minutos e ${segundosC} segundos para o nosso casamento ❤️`;
-      } else {
-        document.getElementById("contadorCasamento").innerText = `Já estamos casados! ❤️`;
-      }
+    function updateDaysTogether() {
+      const today = new Date();
+      const diffTime = today - startDate;
+      const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+      counter.textContent = `Estamos juntos há ${diffDays} dias ❤️`;
     }
 
-    setInterval(atualizaContadores, 1000);
-    atualizaContadores();
+    updateDaysTogether();
+    setInterval(updateDaysTogether, 86400000); // Atualiza a cada 24h
   </script>
 </body>
 </html>
