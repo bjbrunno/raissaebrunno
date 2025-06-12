@@ -2,58 +2,92 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Raissa e Brunno 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Raissa & Brunno</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #fff7f3;
-      text-align: center;
-      padding: 50px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #ffe6eb, #fff3f3);
       color: #333;
+      text-align: center;
+      padding: 30px;
     }
-
     h1 {
       font-size: 2.5em;
       margin-bottom: 10px;
+      color: #c0392b;
     }
-
-    .contador {
-      font-size: 1.8em;
+    h1 span {
+      animation: pulse 1s infinite;
+      display: inline-block;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+    .counter {
+      font-size: 1.5em;
+      margin: 20px 0;
+      color: #e91e63;
       font-weight: bold;
-      color: #ff4d6d;
     }
-
     img {
+      margin-top: 20px;
       max-width: 300px;
       border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    audio {
       margin-top: 30px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
   </style>
 </head>
 <body>
-  <h1>Raissa 💕 Brunno</h1>
-  <p class="contador" id="contador"></p>
+  <h1>Raissa <span>❤️</span> Brunno</h1>
+
+  <div class="counter" id="contadorAmor"></div>
+  <div class="counter" id="contadorCasamento"></div>
+
   <img src="foto.jpg" alt="Foto do casal">
-  
+
+  <audio autoplay loop controls>
+    <source src="https://bjbrunno.github.io/raissaebrunno/aindabem.mp3" type="audio/mpeg">
+    Seu navegador não suporta áudio.
+  </audio>
+
   <script>
-    const inicio = new Date("2023-09-02T00:00:00");
+    const comecoRelacao = new Date('2022-09-02T20:00:00');
+    const dataCasamento = new Date('2025-10-18T17:00:00');
 
-    function atualizarContador() {
+    function atualizaContadores() {
       const agora = new Date();
-      const diff = agora - inicio;
 
-      const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutos = Math.floor((diff / (1000 * 60)) % 60);
-      const segundos = Math.floor((diff / 1000) % 60);
+      // Diferença desde o início do relacionamento
+      let diffAmor = agora - comecoRelacao;
+      let dias = Math.floor(diffAmor / (1000 * 60 * 60 * 24));
+      let horas = Math.floor((diffAmor / (1000 * 60 * 60)) % 24);
+      let minutos = Math.floor((diffAmor / (1000 * 60)) % 60);
+      let segundos = Math.floor((diffAmor / 1000) % 60);
 
-      const texto = `Estamos juntos há ${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos 😍`;
-      document.getElementById("contador").innerText = texto;
+      document.getElementById("contadorAmor").innerText = `Estamos juntos há ${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos 🥰`;
+
+      // Diferença até o casamento
+      let diffCasamento = dataCasamento - agora;
+      let diasC = Math.floor(diffCasamento / (1000 * 60 * 60 * 24));
+      let horasC = Math.floor((diffCasamento / (1000 * 60 * 60)) % 24);
+      let minutosC = Math.floor((diffCasamento / (1000 * 60)) % 60);
+      let segundosC = Math.floor((diffCasamento / 1000) % 60);
+
+      if (diffCasamento > 0) {
+        document.getElementById("contadorCasamento").innerText = `Faltam ${diasC} dias, ${horasC} horas, ${minutosC} minutos e ${segundosC} segundos para o nosso casamento ❤️`;
+      } else {
+        document.getElementById("contadorCasamento").innerText = `Já estamos casados! ❤️`;
+      }
     }
 
-    atualizarContador();
-    setInterval(atualizarContador, 1000);
+    setInterval(atualizaContadores, 1000);
+    atualizaContadores();
   </script>
 </body>
 </html>
